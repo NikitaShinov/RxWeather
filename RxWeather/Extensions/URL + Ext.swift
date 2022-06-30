@@ -10,6 +10,6 @@ import Foundation
 extension URL {
     
     static func weatherURL(city: String) -> URL? {
-        return URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&APPID=\(Constants.apikey)&units=imperial")
+        return URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(Constants.apikey.rawValue)&units=metric")
     }
 }

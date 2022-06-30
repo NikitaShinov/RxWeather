@@ -122,3 +122,45 @@ source.scan(0, accumulator: +)
         print ($0)
     }).disposed(by: disposeBag)
 */
+struct Response: Codable {
+    let main: Main
+}
+
+struct Main: Codable {
+    
+    let temp: Double
+    let humidity: Double
+    
+}
+
+extension Response {
+    static var empty: Response {
+        return Response(main: Main(temp: 0.0, humidity: 0.0))
+    }
+}
+
+var weather: Main?
+
+func getData(of city: String, completion: @escaping(Main?) -> Void) {
+    let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=e9bec230d54f533159f894c1420b75d9&units=metric")
+    URLSession.shared.dataTask(with: url!) { data, _, error in
+        guard let data = data, error == nil else { return }
+        do {
+            let decodedData = try JSONDecoder().decode(Response.self, from: data)
+            weather = decodedData.main
+            completion(weather)
+        } catch {
+            print (error.localizedDescription)
+        }
+    }.resume()
+}
+
+var temp = Double()
+var hum = Double()
+
+getData(of: "Moscow") { weather in
+    guard let curWeather = weather else { return }
+    temp = curWeather.temp
+    hum = curWeather.humidity
+}
+

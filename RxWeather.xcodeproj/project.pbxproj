@@ -81,15 +81,13 @@
 			isa = PBXGroup;
 			children = (
 				502A2BAD286DBE68003ADF8A /* MyPlayground.playground */,
+				502A2BAE286DD1CD003ADF8A /* Models */,
+				502A2BBA286E354A003ADF8A /* Views */,
+				502A2BBB286E355E003ADF8A /* Controllers */,
 				502A2BB6286DDA93003ADF8A /* Constants */,
 				502A2BB1286DD2AE003ADF8A /* Extensions */,
-				502A2BAE286DD1CD003ADF8A /* Models */,
-				502A2B99286DBD80003ADF8A /* AppDelegate.swift */,
-				502A2B9B286DBD80003ADF8A /* SceneDelegate.swift */,
-				502A2B9D286DBD80003ADF8A /* ViewController.swift */,
-				502A2B9F286DBD80003ADF8A /* Main.storyboard */,
+				502A2BB9286E353A003ADF8A /* Root */,
 				502A2BA2286DBD81003ADF8A /* Assets.xcassets */,
-				502A2BA4286DBD81003ADF8A /* LaunchScreen.storyboard */,
 				502A2BA7286DBD81003ADF8A /* Info.plist */,
 			);
 			path = RxWeather;
@@ -118,6 +116,32 @@
 				502A2BB7286DDA9E003ADF8A /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		502A2BB9286E353A003ADF8A /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				502A2B9B286DBD80003ADF8A /* SceneDelegate.swift */,
+				502A2B99286DBD80003ADF8A /* AppDelegate.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		502A2BBA286E354A003ADF8A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				502A2BA4286DBD81003ADF8A /* LaunchScreen.storyboard */,
+				502A2B9F286DBD80003ADF8A /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		502A2BBB286E355E003ADF8A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				502A2B9D286DBD80003ADF8A /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		84252059890DEE51FA4838B5 /* Pods */ = {

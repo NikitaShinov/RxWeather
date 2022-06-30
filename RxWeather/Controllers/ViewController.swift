@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     
     }
     
-    private func displayWeather(_ weather: Weather?) {
+    private func displayWeather(_ weather: Main?) {
         
         if let weather = weather {
             self.tempLabel.text = "\(weather.temp) ℉"
@@ -51,20 +51,24 @@ class ViewController: UIViewController {
     }
     
     private func fetchWeather(of city: String) {
-        guard let city = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
-              let url = URL.weatherURL(city: city) else {
+        guard let url = URL.weatherURL(city: city) else {
                   return
               }
         let resource = Resource<Response>(url: url)
+
         let search = URLRequest.load(resource: resource)
             .observe(on: MainScheduler.instance)
-            .asDriver(onErrorJustReturn: Response.empty)
+            .retry(3)
+            .catch { error in
+                print (error.localizedDescription)
+                return Observable.just(Response.empty)
+            }.asDriver(onErrorJustReturn: Response.empty)
         
-        search.map { "\($0.main.temp)"}
+        search.map { "\($0.main.temp) ℉"}
         .drive(self.tempLabel.rx.text)
         .disposed(by: disposeBag)
         
-        search.map { "\($0.main.humidity)"}
+        search.map { "\($0.main.humidity) 💧"}
         .drive(self.humidityLabel.rx.text)
         .disposed(by: disposeBag)
     }
